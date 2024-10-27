@@ -2543,6 +2543,8 @@ void CMainFrame::OnActivateApp(BOOL bActive, DWORD dwThreadID)
 		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
 			PostMessage(WM_USER + 1);
 	}
+
+	m_wndTabBar.UpdateActive(bActive);
 }
 
 void CMainFrame::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp)
