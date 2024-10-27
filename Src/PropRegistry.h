@@ -33,6 +33,7 @@ public:
 	String  m_strEditorPath;
 	bool    m_bUseRecycleBin;
 	String  m_strUserFilterPath;
+	String  m_strUserPluginsPath;
 	int     m_tempFolderType;
 	String  m_tempFolder;
 	CToolTipCtrl m_tooltips;
@@ -53,6 +54,7 @@ protected:
 	afx_msg void OnDefaults();
 	afx_msg void OnBrowseEditor();
 	afx_msg void OnBrowseFilterPath();
+	afx_msg void OnBrowsePluginPath();
 	afx_msg void OnBrowseTmpFolder();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

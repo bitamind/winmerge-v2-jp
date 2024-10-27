@@ -29,6 +29,7 @@ PropRegistry::PropRegistry(COptionsMgr *optionsMgr)
 	BindOptionCustom(OPT_EXT_EDITOR_CMD, m_strEditorPath, IDC_EXT_EDITOR_PATH, DDX_Text, readconv, writeconv);
 	BindOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin, IDC_USE_RECYCLE_BIN, DDX_Check);
 	BindOptionCustom(OPT_FILTER_USERPATH, m_strUserFilterPath, IDC_FILTER_USER_PATH, DDX_Text, readconv, writeconv);
+	BindOptionCustom(OPT_PLUGINS_USERPATH, m_strUserPluginsPath, IDC_PLUGIN_USER_PATH, DDX_Text, readconv, writeconv);
 	BindOptionCustom(OPT_CUSTOM_TEMP_PATH, m_tempFolder, IDC_TMPFOLDER_NAME, DDX_Text, readconv, writeconv);
 	BindOptionCustom<int, bool>(OPT_USE_SYSTEM_TEMP_PATH, m_tempFolderType, IDC_TMPFOLDER_SYSTEM, DDX_Radio,
 		+[](bool v) { return v ? 0 : 1; }, +[](int v) { return v == 0; });
@@ -39,6 +40,7 @@ BEGIN_MESSAGE_MAP(PropRegistry, OptionsPanel)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	ON_BN_CLICKED(IDC_EXT_EDITOR_BROWSE, OnBrowseEditor)
 	ON_BN_CLICKED(IDC_FILTER_USER_BROWSE, OnBrowseFilterPath)
+	ON_BN_CLICKED(IDC_PLUGIN_USER_BROWSE, OnBrowsePluginPath)
 	ON_BN_CLICKED(IDC_TMPFOLDER_BROWSE, OnBrowseTmpFolder)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -76,6 +78,9 @@ void PropRegistry::OnDefaults()
 	ResetOptionBindings();
 	if (m_strUserFilterPath.empty())
 		m_strUserFilterPath = paths::ConcatPath(env::GetMyDocuments(), DefaultRelativeFilterPath);
+	// m_strUserPluginsPath = GetOptionsMgr()->GetDefault<String>(OPT_PLUGINS_USERPATH);
+	if (m_strUserPluginsPath.empty())
+		m_strUserPluginsPath = _T("%APPDATA%\\WinMerge\\MergePlugins");
 	UpdateData(FALSE);
 }
 
@@ -96,6 +101,16 @@ void PropRegistry::OnBrowseFilterPath()
 	if (SelectFolder(path, m_strUserFilterPath.c_str(), _("Open"), GetSafeHwnd()))
 	{
 		SetDlgItemText(IDC_FILTER_USER_PATH, path);
+	}
+}
+
+/// Open Folder selection dialog for user to select filter folder.
+void PropRegistry::OnBrowsePluginPath()
+{
+	String path;
+	if (SelectFolder(path, m_strUserPluginsPath.c_str(), _("Open"), GetSafeHwnd()))
+	{
+		SetDlgItemText(IDC_PLUGIN_USER_PATH, path);
 	}
 }
 

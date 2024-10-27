@@ -227,6 +227,9 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_PLUGINS_CUSTOM_SETTINGS_LIST, _T(""));
 	pOptions->InitOption(OPT_PLUGINS_UNPACKER_MODE, false);
 	pOptions->InitOption(OPT_PLUGINS_PREDIFFER_MODE, false);
+	pOptions->InitOption(OPT_PLUGINS_USERPATH, _T(""));
+	if (pOptions->GetString(OPT_PLUGINS_USERPATH).empty())
+		pOptions->SaveOption(OPT_PLUGINS_USERPATH, _T("%APPDATA%\\WinMerge\\MergePlugins"));
 	pOptions->InitOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, true);
 	pOptions->InitOption(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE, false);
 

@@ -673,6 +673,8 @@
 #define IDC_PLUGIN_DESCRIPTION          1672
 #define IDC_PLUGIN_PROCESSTYPE          1673
 #define IDC_PLUGIN_ALIAS                1674
+#define IDC_PLUGIN_USER_BROWSE          (0xDEAD) // 架空の番号を指定すればなんとかなるか？
+#define IDC_PLUGIN_USER_PATH            (0xDEAD+1) // 架空の番号を指定すればなんとかなるか？
 #define IDC_CONDITION_LHS               1675
 #define IDC_CONDITION_OPERATOR          1676
 #define IDC_CONDITION_VALUE1            1677

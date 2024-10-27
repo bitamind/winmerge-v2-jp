@@ -277,6 +277,7 @@ namespace
 		{ OPT_PLUGINS_CUSTOM_SETTINGS_LIST, varprop::VT_STRING, {}, {L"EDITOR_SCRIPT.PrettifyHTML=arguments:-indent --tab-size 1 --indent-spaces 1 -wrap 0 --sort-attributes alpha \tFILE_PACK_UNPACK.PrettifyHTML=arguments:-indent --indent-attributes yes --tab-size 2 --indent-spaces 2 -wrap 0 --sort-attributes alpha 	FILE_PACK_UNPACK.PrettifyXML=arguments:-xml -indent --indent-attributes yes --tab-size 2 --indent-spaces 2 -wrap 0 --sort-attributes alpha|automatic:true	FILE_PACK_UNPACK.PrettifyJSON=automatic:true"}},
 		{ OPT_PLUGINS_UNPACKER_MODE, varprop::VT_BOOL, {}, {}},
 		{ OPT_PLUGINS_PREDIFFER_MODE, varprop::VT_BOOL, {}, {}},
+		{ OPT_PLUGINS_USERPATH, varprop::VT_STRING, {}, {L"", L"c:\\tmp"}},
 		{ OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, varprop::VT_BOOL, {}, {}},
 		{ OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE, varprop::VT_BOOL, {}, {}},
 		// Startup options

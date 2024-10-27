@@ -675,7 +675,7 @@ String GetPluginXMLPath(bool userDefined)
 {
 	if (!userDefined)
 		return paths::ConcatPath(env::GetProgPath(), _T("MergePlugins\\Plugins.xml"));
-	return env::ExpandEnvironmentVariables(_T("%APPDATA%\\WinMerge\\MergePlugins\\Plugins.xml"));
+	return env::ExpandEnvironmentVariables(paths::ConcatPath(GetOptionsMgr()->GetString(OPT_PLUGINS_USERPATH), _T("\\Plugins.xml")));
 }
 
 bool LoadFromXML(const String& pluginsXMLPath, bool userDefined, std::list<Info>& internalPlugins, String& errmsg)
