@@ -1,5 +1,25 @@
 # Change log
 
+## WinMerge 2.16.44 - 2024-10-27
+
+### General
+
+- Added Medium size (24px) option to Toolbar icons
+
+### Webpage compare
+
+- BugFix: Differences panel for Webpage mode (winwebdiff#7)
+
+### Plugins
+
+- BugFix: Floating-point precision issue in CompareMSExcelFiles.sct plugin (#2494)
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #2493)
+  - Corsican (PR #2490)
+
 ## WinMerge 2.16.43 - 2024-10-23
 
 ### General
@@ -9,6 +29,7 @@
 - Add support for placing the tab bar on the title bar (PR #2428)
 - Add One-Hand mice wheel scroll diff and merge (PR #2435)
 - Add Support for Custom System Color Overrides (PR #2376)
+- Easy move small main window when tab on titlebar (PR #2489)
 
 ### File compare
 
