@@ -55,6 +55,7 @@ void PropRegistry::ReadOptions()
 	m_strEditorPath = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD);
 	m_bUseRecycleBin = GetOptionsMgr()->GetBool(OPT_USE_RECYCLE_BIN);
 	m_strUserFilterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
+	m_strUserPluginsPath = GetOptionsMgr()->GetString(OPT_PLUGINS_USERPATH);
 	m_tempFolderType = GetOptionsMgr()->GetBool(OPT_USE_SYSTEM_TEMP_PATH) ? 0 : 1;
 	m_tempFolder = GetOptionsMgr()->GetString(OPT_CUSTOM_TEMP_PATH);
 }
@@ -73,6 +74,9 @@ void PropRegistry::WriteOptions()
 
 	String sFilterPath = strutils::trim_ws(m_strUserFilterPath);
 	GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, sFilterPath);
+
+	String sPluginsPath = strutils::trim_ws(m_strUserPluginsPath);
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_USERPATH, sPluginsPath);
 
 	bool useSysTemp = m_tempFolderType == 0;
 	GetOptionsMgr()->SaveOption(OPT_USE_SYSTEM_TEMP_PATH, useSysTemp);
@@ -105,6 +109,9 @@ void PropRegistry::OnDefaults()
 	m_strUserFilterPath = GetOptionsMgr()->GetDefault<String>(OPT_FILTER_USERPATH);
 	if (m_strUserFilterPath.empty())
 		m_strUserFilterPath = paths::ConcatPath(env::GetMyDocuments(), DefaultRelativeFilterPath);
+	m_strUserPluginsPath = GetOptionsMgr()->GetDefault<String>(OPT_PLUGINS_USERPATH);
+	if (m_strUserPluginsPath.empty())
+		m_strUserPluginsPath = _T("%APPDATA%\\WinMerge\\MergePlugins");
 	m_tempFolderType = GetOptionsMgr()->GetDefault<bool>(OPT_USE_SYSTEM_TEMP_PATH) ? 0 : 1;
 	m_tempFolder = GetOptionsMgr()->GetDefault<String>(OPT_CUSTOM_TEMP_PATH);
 

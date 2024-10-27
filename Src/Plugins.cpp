@@ -752,7 +752,7 @@ static vector<String>& LoadTheScriptletList()
 
 		for (const auto path : {
 				paths::ConcatPath(env::GetProgPath(), _T("MergePlugins")),
-				env::ExpandEnvironmentVariables(_T("%APPDATA%\\WinMerge\\MergePlugins")) })
+				env::ExpandEnvironmentVariables(GetOptionsMgr()->GetString(OPT_PLUGINS_USERPATH)) })
 		{
 			if (enabledWSH)
 			{

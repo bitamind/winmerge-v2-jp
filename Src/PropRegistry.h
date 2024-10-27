@@ -34,6 +34,7 @@ public:
 	String  m_strEditorPath;
 	bool    m_bUseRecycleBin;
 	String  m_strUserFilterPath;
+	String  m_strUserPluginsPath;
 	int     m_tempFolderType;
 	String  m_tempFolder;
 	CToolTipCtrl m_tooltips;
