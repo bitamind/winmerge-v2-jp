@@ -2,6 +2,51 @@
 title: 変更履歴
 ---
 
+### 2024/10/29 2.16.44-jp-1
+
+#### 全般
+
+- タイトルバー上にタブバーを配置できるようにした。(Windows10以上のみ有効。これをデフォルトにしています。[表示]→[タブバー]→[タイトルバー上に配置\]メニューのチェックを外すと以前と同じ配置になります。） ([PR #2428](https://github.com/WinMerge/winmerge/pull/2428))
+- マウス右ボタン+マウスホイールで次/前の差異への移動やマージができるようにした。 ([PR #2435](https://github.com/WinMerge/winmerge/pull/2435))(PRをいただきました。ありがとうございます。)
+- システムカラーを上書きしてツールバーやステータスバー等の色を変えられるようにした。（カラースキームの変更とも連動しています） ([PR #2376](https://github.com/WinMerge/winmerge/pull/2376))
+- タイトルバーにタブがある場合に左側WinMergeアイコンの右側をドラッグできるようにした。 ([PR #2489](https://github.com/WinMerge/winmerge/pull/2489))(PRをいただきました。ありがとうございます。)
+- ツールバーのアイコンとして中サイズを選択できるようにした。
+
+#### ファイル比較
+
+- 不具合修正: TeXファイルのシンタックスハイライトの誤りを修正した。 ([#2415](https://github.com/WinMerge/winmerge/issues/2415))
+- 不具合修正: テキスト置換の結果が正しくないことがある問題を修正した。 ([#2422](https://github.com/WinMerge/winmerge/issues/2422))
+- 選択された差異をクリップボードにコピーする機能を追加した。 ([PR #2429](https://github.com/WinMerge/winmerge/pull/2429))(PRをいただきました。ありがとうございます。)
+- Ada言語のシンタックスハイライトを追加した。 ([PR #2452](https://github.com/WinMerge/winmerge/issues/2452))(PRをいただきました。ありがとうございます。)
+- C++20モジュール用のファイル関連付け（cppmとixx）を追加した。 ([PR #2464](https://github.com/WinMerge/winmerge/pull/2464))(PRをいただきました。ありがとうございます。)
+- ロケーションペインで移動ブロックを接続する線にアンチエイリアスが適用されるようにした。
+
+#### フォルダー比較
+
+- 不具合修正: /enableexitcode コマンドラインオプション使用時、比較エラーが発生していないにもかかわらず、プロセスの終了ステータスが2となることがある問題を修正した。 ([#2450](https://github.com/WinMerge/winmerge/issues/2450))
+
+#### Webページ比較
+
+- 不具合修正: ロケーションペインで差異が正しく表示されないことがある問題を修正した。(winwebdiff[#6](https://github.com/WinMerge/winmerge/issues/6)) (winwebdiff[#7](https://github.com/WinMerge/winmerge/issues/7))
+
+#### オプションダイアログ
+
+- 「オプション（コードページ）」ダイアログに「デフォルト」ボタンを追加した。 ([PR #2448](https://github.com/WinMerge/winmerge/pull/2448))(PRをいただきました。ありがとうございます。)
+- 「オプション（一般）」ダイアログに「デフォルト」ボタンを追加した。 ([PR #2453](https://github.com/WinMerge/winmerge/pull/2453))(PRをいただきました。ありがとうございます。)
+
+#### アーカイブサポート
+
+- 7-Zip バージョン 24.08に更新した。
+
+#### プラグイン
+
+- Java の properties ファイル比較用プラグイン CompareEscapedJavaPropertiesFiles.sct を追加した。 ([PR #2455](https://github.com/WinMerge/winmerge/pull/2455))(PRをいただきました。ありがとうございます。)
+- 不具合修正: CompareMSExcelFiles.sctプラグイン: 数式の計算結果として 6,05ではなく、6.050000000000001 のように表示されることがある問題を修正した。 ([#2494](https://github.com/WinMerge/winmerge/issues/2494))
+
+#### マニュアル
+
+- 不具合修正: マニュアルのデフォルト値に関する2箇所の誤りを修正した。 ([#2456](https://github.com/WinMerge/winmerge/issues/2456))
+
 ### 2024/08/29 2.16.42-jp-3
 
 #### 全般

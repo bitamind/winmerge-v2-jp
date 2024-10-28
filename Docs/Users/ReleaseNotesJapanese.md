@@ -1,135 +1,104 @@
-# WinMerge 2.16.42.1 リリースノート
+# WinMerge 2.16.44 リリースノート
 
 - [このリリースについて](#about-this-release)
-- [2.16.42.1 の新機能](#what-is-new-in-216421)
-- [2.16.42 の新機能](#what-is-new-in-21642)
-- [2.16.41 beta の新機能](#what-is-new-in-21641-beta)
+- [2.16.44 の新機能](#what-is-new-in-21644)
+- [2.16.43 beta の新機能](#what-is-new-in-21643-beta)
 - [既知の問題](#known-issues)
 
-2024年7月
+2024年10月
 
 ## このリリースについて
 
-WinMerge の 2.16.42.1 安定版リリースです。
+WinMerge の 2.16.44 安定版リリースです。
 このリリースは、以前の WinMerge 安定版リリースに代わる推奨リリースです。
 
 不具合は <a href="http://github.com/WinMerge/winmerge/issues">bug-tracker</a> で報告してください。
 日本語での報告は、<a href="https://sourceforge.net/p/winmerge-v2-jp/tickets/">こちら</a>でお願いします。
 
-## <a name="what-is-new-in-21642"></a>2.16.42.1 の新機能
+## <a name="what-is-new-in-21644"></a>2.16.44 の新機能
 
 ### 全般
 
-- 不具合: バージョン 2.16.42 にデジタル署名がされていなかった。
+- ツールバーのアイコンとして中サイズを選択できるようにした。
 
-### 翻訳
+### Webページ比較
 
-- 翻訳の更新:
-  - Chinese Simplified (PR #2394)
-  - Italian (PR #2393)
-
-## <a name="what-is-new-in-21642"></a>2.16.42 の新機能
-
-### 全般
-
-- Windows11上でメニューが角丸になるようにした。[(PR #2364)](https://github.com/WinMerge/winmerge/pull/2364)
-- ステータスバーの分割線を描画しないようにした。[(PR #2377)](https://github.com/WinMerge/winmerge/pull/2377)
-
-### フォルダー比較
-
-- 不具合修正: フォルダー比較のステータスがツールバーに正確に反映されていなかった問題を修正した。[(#2374)](https://github.com/WinMerge/winmerge/issues/2374)
-- 不具合修正: 再読み込み(F5)後にタブアイコンがフォルダー比較のステータスを正しく反映していなかった問題を修正した。[(#2383)](https://github.com/WinMerge/winmerge/issues/2383)
-
-### ファイル比較
-
-- ファイル全体と選択範囲の置換をより賢く選択するように置換機能を変更した。[(#2368)](https://github.com/WinMerge/winmerge/issues/2368)
-
-### 画像比較
-
-- 不具合修正: 画像比較でオーバーレイアニメーション中にダイアログがフリーズする問題を修正した。[(#2370)](https://github.com/WinMerge/winmerge/issues/2370)
-- ステータスバーの右端が白く表示される問題を修正した。
-- 点滅間隔やオーバーレイアニメーション間隔を変更できるようにした。
+- 不具合修正: ロケーションペインで差異が正しく表示されないことがある問題を修正した。(winwebdiff[#7](https://github.com/WinMerge/winmerge/issues/7))
 
 ### プラグイン
 
-- AIConvertTextプラグイン設定ウィンドウでgpt4-o-miniモデルを選択可能にした。
-
-### アーカイブサポート
-
-- 7-Zip 24.07 に更新した。
+- 不具合修正: CompareMSExcelFiles.sctプラグイン: 数式の計算結果として 6,05ではなく、6.050000000000001 のように表示されることがある問題を修正した。 ([#2494](https://github.com/WinMerge/winmerge/issues/2494))
 
 ### 翻訳
 
 - 翻訳の更新:
-  - Chinese Simplified (PR #2392)
-  - Brazilian (PR #2391)
-  - Hungarian (PR #2388)
-  - Lithuanian (PR #2390)
+  - Brazilian (PR #2493)
+  - Corsican (PR #2490)
 
-## <a name="what-is-new-in-21641-beta"></a>2.16.41 beta の新機能
+## <a name="what-is-new-in-21643"></a>2.16.43 の新機能
 
 ### 全般
 
-- タブバーのタブを、Firefox のように角丸にした。
+- 不具合修正: (比較 > 画像) カテゴリーの「画像ファイルとして扱うパターン」を空欄にすると、すべてのファイルが画像として扱われてしまう問題を修正した。[(#2408)](https://github.com/WinMerge/winmerge/issues/2408)
+- メニューバーをツールバーとして実装した。 [(PR #2400)](https://github.com/WinMerge/winmerge/pull/2400)
+- タイトルバーにタブがある場合に左側WinMergeアイコンの右側をドラッグできるようにした。 ([PR #2489](https://github.com/WinMerge/winmerge/pull/2489))(PRをいただきました。ありがとうございます。)
+- マウス右ボタン+マウスホイールで次/前の差異への移動やマージができるようにした。 ([PR #2435](https://github.com/WinMerge/winmerge/pull/2435))(PRをいただきました。ありがとうございます。)
+- システムカラーを上書きしてツールバーやステータスバー等の色を変えられるようにした。（カラースキームの変更とも連動しています） ([PR #2376](https://github.com/WinMerge/winmerge/pull/2376))
+- タイトルバーにタブがある場合に左側WinMergeアイコンの右側をドラッグできるようにした。 ([PR #2489](https://github.com/WinMerge/winmerge/pull/2489))(PRをいただきました。ありがとうございます。)
 
 ### ファイル比較
 
-- F# シンタックスハイライトを追加した。 [(PR#2298)](https://github.com/WinMerge/winmerge/pull/2298)(PRをいただきました。ありがとうございます。)
-- F#のパーシングを改善し、複数行コメントをサポートした。[(PR#2301)](https://github.com/WinMerge/winmerge/pull/2301)(PRをいただきました。ありがとうございます。)
-- F# シンタックスハイライトの改善。 [(PR#2303)](https://github.com/WinMerge/winmerge/pull/2303)[(PR#2309)](https://github.com/WinMerge/winmerge/pull/2309)(PRをいただきました。ありがとうございます。)
-- マルチラインコメント修正その2(PR #2309)
-- TypeScript ファイルにJavaScriptシンタックスハイライトを適用するようにした。 [(PR#2312)](https://github.com/WinMerge/winmerge/pull/2312)(PRをいただきました。ありがとうございます。)
+- 不具合修正: TeXファイルのシンタックスハイライトの誤りを修正した。 ([#2415](https://github.com/WinMerge/winmerge/issues/2415))
+- 不具合修正: テキスト置換の結果が正しくないことがある問題を修正した。 ([#2422](https://github.com/WinMerge/winmerge/issues/2422))
+- 選択された差異をクリップボードにコピーする機能を追加した。 ([PR #2429](https://github.com/WinMerge/winmerge/pull/2429))(PRをいただきました。ありがとうございます。)
+- Ada言語のシンタックスハイライトを追加した。 ([PR #2452](https://github.com/WinMerge/winmerge/issues/2452))(PRをいただきました。ありがとうございます。)
+- C++20モジュール用のファイル関連付け（cppmとixx）を追加した。 ([PR #2464](https://github.com/WinMerge/winmerge/pull/2464))(PRをいただきました。ありがとうございます。)
+- ロケーションペインで移動ブロックを接続する線にアンチエイリアスが適用されるようにした。
 
 ### フォルダー比較
 
-- 不具合修正: [選択項目を最新に更新]をクリックして再比較した際、比較進捗ウインドウに選択していないファイル名が表示される問題を修正した。 [(#2338)](https://github.com/WinMerge/winmerge/issues/2338)
-- 不具合修正: ファイルやフォルダ等を選択している状態でフォルダを展開すると別のファイルやフォルダが選択されることがある問題を修正した。[(#2359)](https://github.com/WinMerge/winmerge/issues/2359)
+- 不具合修正: /enableexitcode コマンドラインオプション使用時、比較エラーが発生していないにもかかわらず、プロセスの終了ステータスが2となることがある問題を修正した。 ([#2450](https://github.com/WinMerge/winmerge/issues/2450))
+
+### Webページ比較
+
+- 不具合修正: ロケーションペインで差異が正しく表示されないことがある問題を修正した。(winwebdiff[#6](https://github.com/WinMerge/winmerge/issues/6))
 
 ### オプションダイアログ
 
-- 不具合修正: (色 > テキスト)カテゴリーの"テキストの色をカスタマイズする" を変更するとキャンセルしても(色 > シンタックス) カテゴリの設定がデフォルトに戻ってしまう問題を修正した。[(#2355)](https://github.com/WinMerge/winmerge/issues/2355)
-- (エディタ > 比較/マージ) カテゴリーに「デフォルト」ボタンを追加した。 [(PR #2348)](https://github.com/WinMerge/winmerge/pull/2348)(PRをいただきました。ありがとうございます。)
-- (アーカイブサポート)カテゴリーに「デフォルト」ボタンを追加した。[(PR #2362)](https://github.com/WinMerge/winmerge/pull/2362)(PRをいただきました。ありがとうございます。)
-
-### プラグイン
-
-- プラグインの選択ダイアログ表示時、プラグインパイプラインの設定が正しく行われていなかった問題を修正した。
-- AIConvertText プラグインを追加した。 [(PR#2258)](https://github.com/WinMerge/winmerge/pull/2258) (OpenAI API を使用して、指示した通りテキストを変換します。利用には OpenAI API Key の取得が必要になります）
-- md4c 0.5.2 に更新した。
-- jq 1.7.1 に更新した。
+- 「オプション（コードページ）」ダイアログに「デフォルト」ボタンを追加した。 ([PR #2448](https://github.com/WinMerge/winmerge/pull/2448))(PRをいただきました。ありがとうございます。)
+- 「オプション（一般）」ダイアログに「デフォルト」ボタンを追加した。 ([PR #2453](https://github.com/WinMerge/winmerge/pull/2453))(PRをいただきました。ありがとうございます。)
 
 ### アーカイブサポート
 
-- 7-Zip 24.05 に更新した。
+- 7-Zip 24.08 に更新した。
 
-### インストーラー
+### プラグイン
 
-- 不具合修正; WinMerge 2.16.40 インストーラーにバージョン情報やアーキテクチャー情報がない [(#2300)](https://github.com/WinMerge/winmerge/issues/2300)
+- Java の properties ファイル比較用プラグイン CompareEscapedJavaPropertiesFiles.sct を追加した。 ([PR #2455](https://github.com/WinMerge/winmerge/pull/2455))(PRをいただきました。ありがとうございます。)
+
+### Manual
+
+- 不具合修正: マニュアルのデフォルト値に関する2箇所の誤りを修正した。 ([#2456](https://github.com/WinMerge/winmerge/issues/2456))
+- オプション「片方に存在しないサブフォルダー内も含める」のデフォルト値の誤りを修正した。 [(PR #2396)](https://github.com/WinMerge/winmerge/pull/2396)(PRをいただきました。ありがとうございます。)
 
 ### 翻訳
 
 - 翻訳の更新:
-  - Brazilian (PR #2308)
-  - Chinese Simplified (PR #2306,#2310,#2314,#2352)
-  - Corsican (PR #2361)
-  - French (PR #2354)
-  - German (PR #2349)
-  - Hungarian (PR #2307)
-  - Italian (PR #2299)
-  - Lithuanian (PR #2318,#2320)
+  - Brazilian (PR #2397,#2431,#2439,#2454,#2460,#2468,#2477,#2486)
+  - Chinese Simplified (PR #2394,#2461,#2469,#2485)
+  - Dutch (PR #2474)
+  - French (PR #2399,#2444)
+  - Hungarian (PR #2433,#2440,#2458,#2472,#2482)
+  - Italian (PR #2393,#2438,#2446,#2447,#2457,#2467,#2470,#2487)
   - Japanese
-  - Korean (PR #2333)
-  - Polish (PR #2313)
-  - Portuguese (PR #2321)
-  - Turkish (PR #2315)
+  - Korean (PR #2426,#2459,#2473)
+  - Lithuanian (PR #2436,#2443,#2462,#2471,#2483)
+  - Portuguese (PR #2410,#2441,#2480)
+  - Russian (PR #2462)
 
-### その他
+### Internals
 
-- GitHub Actions CI の更新。 [(PR#2304)](https://github.com/WinMerge/winmerge/pull/2304)(PRをいただきました。ありがとうございます。)
-- Typo 修正。 [(PR#2305)](https://github.com/WinMerge/winmerge/pull/2305)(PRをいただきました。ありがとうございます。)
-- Boost 1.85 に更新。
-- POCO C++ Libraries 1.13.3 に更新。
-- Google C++ Testing Framework 1.14.0 に更新。
+- Make InsertLineNumberInPOFiles.bat and RenewPOFiles.bat work again
 
 ## <a name="known-issues"></a>既知の問題
 
