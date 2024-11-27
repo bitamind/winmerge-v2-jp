@@ -72,6 +72,10 @@
 #include "Win_VersionHelper.h"
 #include "VersionInfo.h"
 
+#if !defined(SM_CXPADDEDBORDER)
+#define SM_CXPADDEDBORDER       92
+#endif
+
 using std::vector;
 using boost::begin;
 using boost::end;
@@ -224,6 +228,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_ACTIVATEAPP()
 	ON_WM_NCCALCSIZE()
 	ON_WM_SIZE()
+	ON_WM_SYSCOMMAND()
 	ON_UPDATE_COMMAND_UI_RANGE(CMenuBar::FIRST_MENUID, CMenuBar::FIRST_MENUID + 10, OnUpdateMenuBarMenuItem)
 	// [File] menu
 	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, ID_MERGE_COMPARE_TEXT>))
@@ -251,6 +256,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	// [View] menu
 	ON_COMMAND(ID_VIEW_SELECTFONT, OnViewSelectfont)
 	ON_COMMAND(ID_VIEW_USEDEFAULTFONT, OnViewUsedefaultfont)
+	ON_COMMAND(ID_VIEW_MENU_BAR, OnViewMenuBar)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_MENU_BAR, OnUpdateViewMenuBar)
 	ON_COMMAND(ID_VIEW_STATUS_BAR, OnViewStatusBar)
 	ON_COMMAND(ID_VIEW_TAB_BAR, OnViewTabBar)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_TAB_BAR, OnUpdateViewTabBar)
@@ -464,6 +471,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	});
 
 	m_wndMDIClient.ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
+
+	UpdateSystemMenu();
 
 	return 0;
 }
@@ -2249,6 +2258,26 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 }
 
 /**
+ * @brief Show/hide menubar.
+ */
+void CMainFrame::OnViewMenuBar()
+{
+	const bool bMenuVisible = !GetOptionsMgr()->GetBool(OPT_SHOW_MENUBAR);
+	__super::ShowControlBar(&m_wndMenuBar, bMenuVisible, 0);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_MENUBAR, bMenuVisible);
+	m_wndMenuBar.SetAlwaysVisible(bMenuVisible);
+	UpdateSystemMenu();
+}
+
+/**
+ * @brief Updates "Menu Bar" menuitem.
+ */
+void CMainFrame::OnUpdateViewMenuBar(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_MENUBAR));
+}
+
+/**
  * @brief Show/hide statusbar.
  */
 void CMainFrame::OnViewStatusBar()
@@ -2552,7 +2581,17 @@ void CMainFrame::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncs
 	RECT rcWindow = lpncsp->rgrc[0];
 	__super::OnNcCalcSize(bCalcValidRects, lpncsp);
 	if (m_bTabsOnTitleBar.value_or(false) && m_wndTabBar.IsVisible())
-		lpncsp->rgrc[0].top = rcWindow.top + 0;
+	{
+		if (IsZoomed())
+		{
+			lpncsp->rgrc[0].top = rcWindow.top + GetSystemMetrics(SM_CYFRAME) + GetSystemMetrics(SM_CXPADDEDBORDER);
+			//lpncsp->rgrc[0].left += 1;
+			//lpncsp->rgrc[0].right -= 1;
+			lpncsp->rgrc[0].bottom -= 1;
+		}
+		else
+			lpncsp->rgrc[0].top = rcWindow.top + 0;
+	}
 }
 
 void CMainFrame::OnSize(UINT nType, int cx, int cy)
@@ -2605,7 +2644,11 @@ BOOL CMainFrame::CreateToolbar()
 		__super::ShowControlBar(&m_wndToolBar, false, 0);
 	}
 
-	__super::ShowControlBar(&m_wndMenuBar, true, 0);
+	if (!GetOptionsMgr()->GetBool(OPT_SHOW_MENUBAR))
+	{
+		__super::ShowControlBar(&m_wndMenuBar, false, 0);
+		m_wndMenuBar.SetAlwaysVisible(false);
+	}
 
 	m_wndReBar.LoadStateFromString(GetOptionsMgr()->GetString(OPT_REBAR_STATE).c_str());
 
@@ -3064,9 +3107,8 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 		{
 			TFile(file).copyTo(copiedFile);
 		}
-		catch (Poco::FileException& e)
+		catch (Poco::Exception& e)
 		{
-			
 			LogErrorStringUTF8(e.displayText());
 		}
 	}
@@ -3768,4 +3810,33 @@ LRESULT CMainFrame::OnChildFrameActivated(WPARAM wParam, LPARAM lParam)
 	m_arrChild.InsertAt(0, reinterpret_cast<CMDIChildWnd*>(lParam));
 
 	return 1;
+}
+
+void CMainFrame::UpdateSystemMenu()
+{
+	CMenu* pSysMenu = GetSystemMenu(FALSE);
+	if (pSysMenu == nullptr)
+		return;
+	bool bFound = false;
+	const int cnt = pSysMenu->GetMenuItemCount();
+	for (int i = 0; i < cnt; ++i)
+		if (pSysMenu->GetMenuItemID(i) == ID_VIEW_MENU_BAR)
+			bFound = true;
+	if (!bFound)
+	{
+		pSysMenu->AppendMenu(MF_SEPARATOR);
+		pSysMenu->AppendMenu(MF_STRING, ID_VIEW_MENU_BAR, _("Men&u Bar").c_str());
+	}
+	const bool bChecked = GetOptionsMgr()->GetBool(OPT_SHOW_MENUBAR);
+	pSysMenu->CheckMenuItem(ID_VIEW_MENU_BAR, MF_BYCOMMAND | (bChecked ? MF_CHECKED : MF_UNCHECKED));
+}
+
+void CMainFrame::OnSysCommand(UINT nID, LPARAM lParam)
+{
+	if (nID == ID_VIEW_MENU_BAR)
+	{
+		OnViewMenuBar();
+		return;
+	}
+	__super::OnSysCommand(nID, lParam);
 }

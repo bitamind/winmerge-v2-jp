@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge (Language) 26.10.2024\n"
+"Project-Id-Version: WinMerge (Language) 09.11.2024\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-07-09 07:44+0000\n"
-"PO-Revision-Date: 2024-10-26 10:25+0200\n"
+"PO-Revision-Date: 2024-11-09 11:44+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.comn>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -63,17 +63,17 @@ msgstr "Copia righe selezionate a sinistra"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Copia righe selezionate da sinistra"
 
-msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
-msgstr "Copia differenze selezionate (a sinistra) negli appunti \tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
+msgstr "Copia differenze selezionate (a sinistra) negli appunti \tCtrl+&1"
 
-msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
-msgstr "Copia  differenze selezionate (a destra) negli appunti\tCtrl+2"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
+msgstr "Copia  differenze selezionate (a destra) negli appunti\tCtrl+&2"
 
-msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
-msgstr "Copia differenze selezionate (al centro) negli appunti\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
+msgstr "Copia differenze selezionate (al centro) negli appunti\tCtrl+&2"
 
-msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
-msgstr "Copia differenze selezionate (a destra) negli appunti\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
+msgstr "Copia differenze selezionate (a destra) negli appunti\tCtrl+&3"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Seleziona &differenze di riga\tF4"
@@ -382,6 +382,9 @@ msgstr "&Grande"
 
 msgid "&Huge"
 msgstr "&Gigantesca"
+
+msgid "Men&u Bar"
+msgstr "Barra men&u"
 
 msgid "&Status Bar"
 msgstr "&Barra stato"

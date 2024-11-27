@@ -84,7 +84,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_WM_TIMER()
 	ON_WM_LBUTTONDBLCLK()
 	ON_WM_LBUTTONUP()
-	ON_WM_RBUTTONDOWN()
+	ON_WM_RBUTTONUP()
 	ON_WM_VSCROLL ()
 	ON_WM_HSCROLL ()
 	ON_WM_SIZE()
@@ -1931,13 +1931,17 @@ void CMergeEditView::OnLButtonUp(UINT nFlags, CPoint point)
 /**
  * @brief Called when mouse right button is pressed.
  *
- * If right button is pressed outside diffs, current diff
+ * If right button is pressed outside diffs, and it is not
+ * right button + wheel scrolling combination, current diff
  * is deselected.
  */
-void CMergeEditView::OnRButtonDown(UINT nFlags, CPoint point)
+void CMergeEditView::OnRButtonUp(UINT nFlags, CPoint point)
 {
-	CCrystalEditViewEx::OnRButtonDown(nFlags, point);
-	DeselectDiffIfCursorNotInCurrentDiff();
+	if (!CMouseHook::IsRightWheelScrolling())
+	{
+		DeselectDiffIfCursorNotInCurrentDiff();
+	}
+	CCrystalEditViewEx::OnRButtonUp(nFlags, point);
 }
 
 void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
@@ -3832,25 +3836,13 @@ void CMergeEditView::OnSize(UINT nType, int cx, int cy)
 		return;
 
 	CMergeDoc * pDoc = GetDocument();
-	if (m_nThisPane < pDoc->m_nBuffers - 1)
+	// To calculate subline index correctly
+	// we have to invalidate line cache in all pane before calling the function related the subline.
+	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 	{
-		// To calculate subline index correctly
-		// we have to invalidate line cache in all pane before calling the function related the subline.
-		for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
-		{
-			CMergeEditView *pView = GetGroupView(nPane);
-			if (pView != nullptr)
-				pView->InvalidateScreenRect(false);
-		}
-	}
-	else
-	{
-		for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
-		{
-			CMergeEditView *pView = GetGroupView(nPane);
-			if (pView != nullptr)
-				pView->Invalidate();
-		}
+		CMergeEditView *pView = GetGroupView(nPane);
+		if (pView != nullptr)
+			pView->InvalidateScreenRect(false);
 	}
 	// recalculate m_nTopSubLine
 	m_nTopSubLine = GetSubLineIndex(m_nTopLine);
@@ -4364,6 +4356,7 @@ void CMergeEditView::ZoomText(short amount)
 			}
 		}
 	}
+	RepaintLocationPane();
 
 	GetOptionsMgr()->SaveOption(OPT_VIEW_ZOOM, nPointSize * 1000 / nOrgPointSize);
 }

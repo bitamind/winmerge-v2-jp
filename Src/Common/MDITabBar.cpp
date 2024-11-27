@@ -86,6 +86,12 @@ BOOL CMyTabCtrl::PreTranslateMessage(MSG* pMsg)
 	return __super::PreTranslateMessage(pMsg);
 }
 
+void CMyTabCtrl::SetActive(bool bActive)
+{
+	CTitleBarHelper::ReloadAccentColor();
+	m_bActive = bActive;
+}
+
 static inline COLORREF getTextColor()
 {
 	return GetSysColor(COLOR_WINDOWTEXT);
@@ -96,13 +102,11 @@ COLORREF CMyTabCtrl::GetBackColor() const
 	const COLORREF clr = GetSysColor(COLOR_3DFACE);
 	if (!m_bOnTitleBar)
 		return clr;
-	const COLORREF bgclr = m_bActive ?
-		RGB(GetRValue(clr), std::clamp(GetGValue(clr) + 8, 0, 255), std::clamp(GetBValue(clr) + 8, 0, 255))
-		: clr;
-	return bgclr;
+	return CTitleBarHelper::GetBackColor(m_bActive);
 }
 
 static inline bool IsHighContrastEnabled()
+
 {
 	HIGHCONTRAST hc = { sizeof(HIGHCONTRAST) };
 	SystemParametersInfo(SPI_GETHIGHCONTRAST, sizeof(hc), &hc, 0);
@@ -123,7 +127,9 @@ void CMyTabCtrl::OnPaint()
 	const int nCount = GetItemCount();
 	if (nCount == 0)
 	{
-		dc.SetTextColor(getTextColor());
+		const COLORREF winTitleTextColor = m_bOnTitleBar ?
+			CTitleBarHelper::GetTextColor(m_bActive) : getTextColor();
+		dc.SetTextColor(winTitleTextColor);
 		TCHAR szBuf[256];
 		AfxGetMainWnd()->GetWindowText(szBuf, sizeof(szBuf) / sizeof(szBuf[0]));
 		dc.DrawText(szBuf, -1, &rcClient, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
@@ -387,7 +393,9 @@ void CMyTabCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	}
 	else
 	{
-		SetTextColor(lpDraw->hDC, GetSysColor(COLOR_BTNTEXT));
+		const COLORREF txtclr = m_bOnTitleBar ?
+			CTitleBarHelper::GetTextColor(m_bActive) : GetSysColor(COLOR_BTNTEXT);
+		SetTextColor(lpDraw->hDC, txtclr);
 	}
 	CSize iconsize(determineIconSize(), determineIconSize());
 	rc.left += sw + pd + iconsize.cx;
@@ -761,6 +769,6 @@ void CMDITabBar::OnPaint()
 	if (!m_bOnTitleBar)
 		return __super::OnPaint();
 	CPaintDC dc(this);
-	m_titleBar.DrawIcon(AfxGetMainWnd(), dc);
-	m_titleBar.DrawButtons(dc, getTextColor(), m_tabCtrl.GetBackColor());
+	m_titleBar.DrawIcon(AfxGetMainWnd(), dc, m_tabCtrl.GetActive());
+	m_titleBar.DrawButtons(dc, CTitleBarHelper::GetTextColor(m_tabCtrl.GetActive()), m_tabCtrl.GetBackColor());
 }

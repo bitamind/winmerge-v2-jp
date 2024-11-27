@@ -8,6 +8,7 @@
 
 #include "StdAfx.h"
 #include "TitleBarHelper.h"
+#include "AccentColor.h"
 
 #if !defined(SM_CXPADDEDBORDER)
 #define SM_CXPADDEDBORDER       92
@@ -22,7 +23,15 @@ CTitleBarHelper::CTitleBarHelper()
 	, m_bMouseTracking(false)
 	, m_nTrackingButton(-1)
 	, m_nHitTest(HTNOWHERE)
+	, m_icon(nullptr)
+	, m_icon_gray(nullptr)
 {
+}
+
+CTitleBarHelper::~CTitleBarHelper()
+{
+	if (m_icon_gray)
+		DestroyIcon(m_icon_gray);
 }
 
 void CTitleBarHelper::Init(CWnd *pWnd)
@@ -32,15 +41,12 @@ void CTitleBarHelper::Init(CWnd *pWnd)
 
 int CTitleBarHelper::GetTopMargin() const
 {
-	return m_maximized ?
-		GetSystemMetrics(SM_CYFRAME) + GetSystemMetrics(SM_CXPADDEDBORDER) : 0;
+	return 0;
 }
 
-void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc)
+void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc, bool active)
 {
-	HICON hIcon = (HICON)pWnd->SendMessage(WM_GETICON, ICON_SMALL2, 0);
-	if (hIcon == nullptr)
-		hIcon = (HICON)GetClassLongPtr(pWnd->m_hWnd, GCLP_HICONSM);
+	HICON hIcon = LazyLoadIcon(pWnd, active);
 	if (hIcon == nullptr)
 		return;
 	const int topMargin = GetTopMargin();
@@ -136,7 +142,7 @@ CRect CTitleBarHelper::GetButtonRect(int button) const
 	rcPart.top = GetTopMargin();
 	rcPart.bottom = m_size.cy;
 	rcPart.left = static_cast<int>(m_size.cx - (3 - button) * buttonWidth);
-	rcPart.right = static_cast<int>(rcPart.left + buttonWidth + 0.5);
+	rcPart.right = static_cast<int>(m_size.cx - (3 - button) * buttonWidth + buttonWidth + 0.5);
 	return rcPart;
 }
 
@@ -145,29 +151,27 @@ void CTitleBarHelper::SetSize(int cx, int cy)
 	m_size = CSize(cx, cy);
 	CClientDC dc(m_pWnd);
 	m_dpi = dc.GetDeviceCaps(LOGPIXELSX);
-	m_pWnd->GetWindowRect(&m_rc);
 }
 
 LRESULT CTitleBarHelper::OnNcHitTest(CPoint pt)
 {
 	if (!m_pWnd)
 		return HTNOWHERE;
-	CClientDC dc(m_pWnd);
 	const int leftMargin = PointToPixel(m_leftMargin);
 	const int rightMargin = PointToPixel(m_rightMargin);
 	const int borderWidth = PointToPixel(6);
 	CRect rc;
-	m_pWnd->GetWindowRect(&rc);
-	if (pt.y < rc.top + borderWidth)
-	{
-		if (pt.x < rc.left + borderWidth)
-			return HTTOPLEFT;
-		else if (rc.right - borderWidth <= pt.x)
-			return HTTOPRIGHT;
-		return HTTOP;
-	}
+	AfxGetMainWnd()->GetWindowRect(&rc);
 	if (!m_maximized)
 	{
+		if (pt.y < rc.top + borderWidth)
+		{
+			if (pt.x < rc.left + borderWidth)
+				return HTTOPLEFT;
+			else if (rc.right - borderWidth <= pt.x)
+				return HTTOPRIGHT;
+			return HTTOP;
+		}
 		if (pt.x < rc.left + borderWidth)
 			return HTLEFT;
 		if (rc.right - borderWidth <= pt.x)
@@ -290,4 +294,116 @@ COLORREF CTitleBarHelper::GetIntermediateColor(COLORREF a, COLORREF b, float rat
 	const uint8_t G = static_cast<int8_t>((GetGValue(a) - GetGValue(b)) * ratio) + GetGValue(b);
 	const uint8_t B = static_cast<int8_t>((GetBValue(a) - GetBValue(b)) * ratio) + GetBValue(b);
 	return RGB(R, G, B);
+}
+
+COLORREF CTitleBarHelper::GetBackColor(bool bActive)
+{
+	if (!CAccentColor::Get().GetColorPrevalence())
+	{
+		const COLORREF clr = GetSysColor(COLOR_3DFACE);
+		const COLORREF bgclr = bActive ?
+			RGB(GetRValue(clr), std::clamp(GetGValue(clr) + 8, 0, 255), std::clamp(GetBValue(clr) + 8, 0, 255))
+			: clr;
+		return bgclr;
+	}
+	const COLORREF czclr = (!bActive) ?
+		CAccentColor::Get().GetAccentColorInactive() :
+		CAccentColor::Get().GetAccentColor();
+	return czclr != CLR_NONE ? czclr : GetSysColor(COLOR_3DFACE);
+}
+
+COLORREF CTitleBarHelper::GetTextColor(bool bActive)
+{
+	if (!CAccentColor::Get().GetColorPrevalence())
+		return GetSysColor(COLOR_BTNTEXT);
+	if (!bActive)
+	{
+		const COLORREF clr = GetBackColor(false);
+		if (GetRValue(clr) < 128 && GetGValue(clr) < 128 && GetBValue(clr) < 128)
+			return RGB(191, 191, 191);
+		return RGB(64, 64, 64);
+	}
+	const COLORREF czclr = CAccentColor::Get().GetAccentColor();
+	if (czclr != CLR_NONE)
+	{
+		const BYTE r = static_cast<BYTE>(czclr >> 16);
+		const BYTE g = static_cast<BYTE>(czclr >> 8);
+		const BYTE b = static_cast<BYTE>(czclr);
+		if (r < 128 && g < 128 && b < 128)
+			return RGB(255, 255, 255);
+		return RGB(0, 0, 0);
+	}
+	return GetSysColor(COLOR_BTNTEXT);
+}
+
+void CTitleBarHelper::ReloadAccentColor()
+{
+	CAccentColor::Get().Reload();
+}
+
+HICON CTitleBarHelper::CreateGrayIcon(HICON hIcon)
+{
+	ICONINFO iconInfo;
+	GetIconInfo(hIcon, &iconInfo);
+
+	BITMAP bitmap;
+	GetObject(iconInfo.hbmColor, sizeof(BITMAP), &bitmap);
+	const int width = bitmap.bmWidth;
+	const int height = bitmap.bmHeight;
+	const int pixsize = width * height;
+
+	BITMAPINFO bmi = {0};
+	bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	bmi.bmiHeader.biWidth = width;
+	bmi.bmiHeader.biHeight = height;
+	bmi.bmiHeader.biPlanes = 1;
+	bmi.bmiHeader.biBitCount = 32;
+	bmi.bmiHeader.biCompression = BI_RGB;
+
+	RGBQUAD* pixels = new RGBQUAD[pixsize];
+	HDC hdc = GetDC(NULL);
+	GetDIBits(hdc, iconInfo.hbmColor, 0, height, pixels, &bmi, DIB_RGB_COLORS);
+
+	for (int i = 0; i < pixsize; i++)
+	{
+		BYTE gray = (BYTE)(0.3 * pixels[i].rgbRed + 0.59 * pixels[i].rgbGreen + 0.11 * pixels[i].rgbBlue);
+		pixels[i].rgbRed = gray;
+		pixels[i].rgbGreen = gray;
+		pixels[i].rgbBlue = gray;
+	}
+
+	HBITMAP hbmGray = CreateCompatibleBitmap(hdc, width, height);
+	SetDIBits(hdc, hbmGray, 0, height, pixels, &bmi, DIB_RGB_COLORS);
+
+	ICONINFO grayIconInfo = iconInfo;
+	grayIconInfo.hbmColor = hbmGray;
+	HICON hGrayIcon = CreateIconIndirect(&grayIconInfo);
+
+	DeleteObject(iconInfo.hbmColor);
+	DeleteObject(iconInfo.hbmMask);
+	DeleteObject(hbmGray);
+	ReleaseDC(NULL, hdc);
+	delete[] pixels;
+
+	return hGrayIcon;
+}
+
+HICON CTitleBarHelper::LazyLoadIcon(CWnd* pWnd, bool active)
+{
+	if (active)
+	{
+		if (m_icon)
+			return m_icon;
+		m_icon = (HICON)pWnd->SendMessage(WM_GETICON, ICON_SMALL2, 0);
+		if (m_icon == nullptr)
+			m_icon = (HICON)GetClassLongPtr(pWnd->m_hWnd, GCLP_HICONSM);
+		return m_icon;
+	}
+	else
+	{
+		if (m_icon_gray)
+			return m_icon_gray;
+		m_icon_gray = (m_icon == nullptr) ? nullptr : CreateGrayIcon(m_icon);
+		return m_icon_gray;
+	}
 }

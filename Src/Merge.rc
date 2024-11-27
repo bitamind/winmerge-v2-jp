@@ -102,10 +102,10 @@ BEGIN
         MENUITEM "Copy Selected Line(s) from Middle", ID_COPY_LINES_FROM_MIDDLE_R
         MENUITEM "Copy Selected Line(s) from Left", ID_COPY_LINES_FROM_LEFT_R
         MENUITEM SEPARATOR
-        MENUITEM "Copy Selected Diff (Left) to Clipboard\tCtrl+1", ID_SEL_DIFF_COPY_1ST
-        MENUITEM "Copy Selected Diff (Right) to Clipboard\tCtrl+2", ID_SEL_DIFF_COPY_2ND
-        MENUITEM "Copy Selected Diff (Middle) to Clipboard\tCtrl+2", ID_SEL_DIFF_COPY_2ND_3WAY
-        MENUITEM "Copy Selected Diff (Right) to Clipboard\tCtrl+3", ID_SEL_DIFF_COPY_3RD
+        MENUITEM "Copy Selected Diff (Left) to Clipboard\tCtrl+&1", ID_SEL_DIFF_COPY_1ST
+        MENUITEM "Copy Selected Diff (Right) to Clipboard\tCtrl+&2", ID_SEL_DIFF_COPY_2ND
+        MENUITEM "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2", ID_SEL_DIFF_COPY_2ND_3WAY
+        MENUITEM "Copy Selected Diff (Right) to Clipboard\tCtrl+&3", ID_SEL_DIFF_COPY_3RD
         MENUITEM SEPARATOR
         MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Add this change to Substitution &Filters", ID_ADD_TO_IGNORED_SUBSTITUTIONS
@@ -361,6 +361,7 @@ BEGIN
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
+        MENUITEM "Men&u Bar",                   ID_VIEW_MENU_BAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
     END
     POPUP "&Tools"
@@ -508,6 +509,7 @@ BEGIN
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
+        MENUITEM "Men&u Bar",                   ID_VIEW_MENU_BAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
         MENUITEM "Com&pare Statistics...",      ID_VIEW_DIR_STATISTICS
@@ -750,6 +752,7 @@ BEGIN
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
+        MENUITEM "Men&u Bar",                   ID_VIEW_MENU_BAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
@@ -1781,6 +1784,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,12,264,10
     COMBOBOX        IDC_SYSCOLOR_NAME,6,30,144,93,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "",IDC_SYSCOLOR,"Button",BS_OWNERDRAW,162,30,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
 END
 
 IDD_PROPPAGE_SYSTEM DIALOGEX 0, 0, 285, 242
@@ -3358,7 +3362,11 @@ END
 
 IDD_PROPPAGE_COLORS_SYSTEM AFX_DIALOG_LAYOUT
 BEGIN
-    0
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0
 END
 
 
@@ -4573,6 +4581,11 @@ BEGIN
     ID_MICE_R2L             "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
     ID_MICE_L2RNEXT         "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
     ID_MICE_R2LNEXT         "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_VIEW_MENU_BAR      "Men&u Bar"
 END
 
 #endif    // English (United States) resources

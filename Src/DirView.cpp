@@ -101,6 +101,7 @@ CDirView::CDirView()
 		, m_pColItems(nullptr)
 		, m_nActivePane(-1)
 		, m_nExpandSubdirs(DO_NOT_EXPAND)
+		, m_bUserCancelEdit(false)
 {
 	m_dwDefaultStyle &= ~LVS_TYPEMASK;
 	// Show selection all the time, so user can see current item even when
@@ -3606,7 +3607,7 @@ void CDirView::OnODFindItem(NMHDR* pNMHDR, LRESULT* pResult)
 		for (size_t i = pFindItem->iStart; i < m_listViewItems.size(); ++i)
 		{
 			DIFFITEM *di = GetItemKey(static_cast<int>(i));
-			if (di)
+			if (di && !IsDiffItemSpecial(di))
 			{
 				String filename = strutils::makelower(di->diffFileInfo[0].filename);
 

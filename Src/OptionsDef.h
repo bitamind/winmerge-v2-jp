@@ -27,6 +27,7 @@ inline const String OPT_SHOW_MISSING_RIGHT_ONLY {_T("Settings/ShowMissingRightOn
 inline const String OPT_TREE_MODE {_T("Settings/TreeMode"s)};
 
 // Show/hide toolbar/statusbar/tabbar
+inline const String OPT_SHOW_MENUBAR {_T("Settings/ShowMenubar"s)};
 inline const String OPT_SHOW_TOOLBAR {_T("Settings/ShowToolbar"s)};
 inline const String OPT_SHOW_STATUSBAR {_T("Settings/ShowStatusbar"s)};
 inline const String OPT_SHOW_TABBAR {_T("Settings/ShowTabbar"s)};

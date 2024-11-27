@@ -2870,7 +2870,13 @@ UpdateCaret ()
           CreateSolidCaret (nCaretWidth, nCaretHeight);
         }
       else
-        CreateSolidCaret (2, nCaretHeight);
+        {
+          DWORD caretWidth = 1;
+          SystemParametersInfo (SPI_GETCARETWIDTH, 0, &caretWidth, 0);
+          const int dpi = CClientDC (this).GetDeviceCaps (LOGPIXELSX);
+          const int nCaretWidth = MulDiv (caretWidth, dpi, 96);
+          CreateSolidCaret (nCaretWidth, nCaretHeight);
+        }
 
       SetCaretPos (TextToClient (m_ptCursorPos));
       ShowCaret ();
