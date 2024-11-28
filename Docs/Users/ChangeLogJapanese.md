@@ -2,6 +2,52 @@
 title: 変更履歴
 ---
 
+### 2024/11/29 2.16.44-jp-3
+
+### 一般
+
+- 不具合修正: WinMergeをセカンドモニターで最大化表示するとタイトルバーの高さが大きくなりすぎる問題を修正した。([#2510](https://github.com/WinMerge/winmerge/issues/2510), [#2512](https://github.com/WinMerge/winmerge/issues/2512), [#2540](https://github.com/WinMerge/winmerge/issues/2540), [#2549](https://github.com/WinMerge/winmerge/issues/2549))
+- 不具合修正: WinMergeの最大化表示時に右上端にマウスカーソルを移動したとき、閉じるボタンが押せない問題を修正した。([#2520](https://github.com/WinMerge/winmerge/issues/2520))
+- 不具合修正: タスクバー自動非表示に設定している場合、WinMergeの最大化表示時にマウスカーソルを下端に移動しても、タスクバーが表示されない問題を修正した。([#2518](https://github.com/WinMerge/winmerge/issues/2518))
+- 非アクティブ時にタイトルバーの色やアイコンを灰色にするようにした。([PR #2497](https://github.com/WinMerge/winmerge/pull/2497))([PR #2544](https://github.com/WinMerge/winmerge/pull/2544))([PR #2545](https://github.com/WinMerge/winmerge/pull/2545))([PR #2547](https://github.com/WinMerge/winmerge/pull/2547))(PRをいただきました。ありがとうございます。)
+- Windowsの[タイトルバーとウィンドウ枠線にアクセントカラーを付ける]の設定を反映するようにした。([PR #2505](https://github.com/WinMerge/winmerge/pull/2505))(PRをいただきました。ありがとうございます。)
+- メニューバーを非表示にできるようにした。([PR #2509](https://github.com/WinMerge/winmerge/pull/2509))(PRをいただきました。ありがとうございます。)
+
+### ファイル比較
+
+- 不具合修正: 選択されたテキスト内の差異を右側または左側にコピーする際に想定外のテキストがコピーされることがある問題を修正した。([#2499](https://github.com/WinMerge/winmerge/issues/2499))
+- 不具合修正: [表示]→[ペインをロック]メニューがチェックされている場合、デュアルモニター間で WinMerge をリサイズすると正しく描画されない問題を修正した。([#2514](https://github.com/WinMerge/winmerge/issues/2514))
+- 不具合修正: "Cascadia Mono" フォントのスタイルをRegular以外にした場合、文字幅が異常になる問題を修正した。([#2525](https://github.com/WinMerge/winmerge/issues/2525))
+- 不具合修正: ロケーションペイン内で移動ブロックをつなぐ線の高さが正しくない場合があったのを修正した。
+- 不具合修正: App-V上でWinMergeを起動後、2つのファイルをドラッグ＆ドロップで開くとクラッシュする問題の対策([#2548](https://github.com/WinMerge/winmerge/issues/2548))
+- 不具合修正: 左ペインまたは右ペインの内容をすべて削除して更新すると、"Debug Assertion Failed!" エラーが発生することがある問題を修正した。([#2556](https://github.com/WinMerge/winmerge/issues/2556))
+- マウス右ボタン＋ホイールスクロール操作時に右ボタンを離したときの処理を改善した。([PR #2511](https://github.com/WinMerge/winmerge/pull/2511))(PRをいただきました。ありがとうございます。)
+- コンテキストメニュー表示中に[選択した差異(左/右側)をクリップボードにコピー]を `1` ～ `3` キーで選択できるようにした。([PR #2532](https://github.com/WinMerge/winmerge/pull/2532))(PRをいただきました。ありがとうございます。)
+- キャレットの幅を Windows の設定に従うようにした。([PR #2534](https://github.com/WinMerge/winmerge/pull/2534))(PRをいただきました。ありがとうございます。)
+- 検索ダイアログや置換ダイアログの"検索する文字列" と "置換後の文字列" のテキスト入力エリアのフォントを現在選択中の固定幅フォントにするようにした。([#2539](https://github.com/WinMerge/winmerge/issues/2539))
+
+### フォルダ比較
+
+- 不具合修正: 比較中にキー入力するとクラッシュすることがある問題を修正した。([#1814](https://github.com/WinMerge/winmerge/issues/1814), [PR #2557](https://github.com/WinMerge/winmerge/pull/2557))(PRをいただきました。ありがとうございます。)
+
+### オプションダイアログ
+
+- オプションダイアログの[色/システム]カテゴリに "デフォルト" ボタンを追加した。 ([PR #2506](https://github.com/WinMerge/winmerge/pull/2506))(PRをいただきました。ありがとうございます。)
+- オプションダイアログの[シェル統合]カテゴリの"すべての最近使用したものの履歴をクリアする" ボタンが、ジャンプリストに加えコンボボックス履歴もクリアするようした。([#2555](https://github.com/WinMerge/winmerge/issues/2555))
+
+### ファイルまたはフォルダを選択ダイアログ
+
+- 不具合修正: "ファイルまたはフォルダを選択" ウィンドウで無効なファイルパスを指定するとクラッシュする場合があるのを修正した。
+
+### プラグイン
+
+- Apache Tika プラグイン - Apache Tika を 3.0.0 にアップデート
+
+### インストーラー
+
+- 不具合修正: WinMerge をアンインストールしても、Windows 11 用のシェルエクステンションが削除されない問題を修正した。
+- サイレントインストール時、PowerShell を非表示で `-NoProfile` オプション付きで実行するようにした。([#2515](https://github.com/WinMerge/winmerge/issues/2515))
+
 ### 2024/10/29 2.16.44-jp-1
 
 #### 全般
@@ -246,7 +292,7 @@ title: 変更履歴
 #### プラグイン
 
 - 不具合修正: 以下のように二重引用符を文字列が `/unpacker` コマンドライン引数に指定された場合に正しく解釈されない問題を修正した。
-    
+  
     `/unpacker "Replace ""a"" ""b"""`
 
 ### 2023/12/29 2.16.36-jp-2
