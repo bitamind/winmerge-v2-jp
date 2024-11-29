@@ -29,6 +29,7 @@ CIniOptionsMgr::CIniOptionsMgr(const String& filePath)
 	, m_hEvent(nullptr)
 	, m_dwQueueCount(0)
 {
+	InitializeCriticalSection(&m_cs);
 	m_iniFileKeyValues = Load(m_filePath);
 	m_hEvent = CreateEvent(nullptr, TRUE, FALSE, nullptr);
 	m_hThread = reinterpret_cast<HANDLE>(
@@ -46,6 +47,7 @@ CIniOptionsMgr::~CIniOptionsMgr()
 		if (WaitForSingleObject(m_hThread, 1) != WAIT_TIMEOUT)
 			break;
 	}
+	DeleteCriticalSection(&m_cs);
 }
 
 unsigned __stdcall CIniOptionsMgr::AsyncWriterThreadProc(void *pvThis)
@@ -61,7 +63,9 @@ unsigned __stdcall CIniOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 		auto* pParam = reinterpret_cast<AsyncWriterThreadParams *>(msg.wParam);
 		if (msg.message == WM_USER && pParam)
 		{
+			EnterCriticalSection(&pThis->m_cs);
 			pThis->SaveValueToFile(pParam->name, pParam->value);
+			LeaveCriticalSection(&pThis->m_cs);
 			delete pParam;
 			InterlockedDecrement(&pThis->m_dwQueueCount);
 		}
@@ -108,6 +112,15 @@ int CIniOptionsMgr::LoadValueFromBuf(const String& strName, const String& textVa
 	return retVal;
 }
 
+/**
+ * @brief Save value to inifile.
+ *
+ * Saves one value to inifile to key previously opened. Type of
+ * value is determined from given value parameter.
+ * @param [in] name name to write to inifile parameter key
+ * @param [in] value value to write to inifile parameter value
+ * @todo Handles only string and integer types
+ */
 int CIniOptionsMgr::SaveValueToFile(const String& name, const varprop::VariantValue& value)
 {
 	BOOL retValReg = TRUE;
@@ -163,6 +176,12 @@ int CIniOptionsMgr::SaveValueToFile(const String& name, const varprop::VariantVa
 	return retVal;
 }
 
+/**
+ * @brief Init and add new option.
+ *
+ * Adds new option to list of options. Sets value to default value.
+ * If option does not exist in inifile, saves with default value.
+ */
 int CIniOptionsMgr::InitOption(const String& name, const varprop::VariantValue& defaultValue)
 {
 	// Check type & bail if null
@@ -174,6 +193,7 @@ int CIniOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 	if (!m_serializing)
 		return AddOption(name, defaultValue);
 
+	EnterCriticalSection(&m_cs);
 	// Actually save value into our in-memory options table
 	int retVal = AddOption(name, defaultValue);
 
@@ -190,9 +210,16 @@ int CIniOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 		}
 	}
 
+	LeaveCriticalSection(&m_cs);
 	return retVal;
 }
 
+/**
+ * @brief Init and add new string option.
+ *
+ * Adds new option to list of options. Sets value to default value.
+ * If option does not exist in registry, saves with default value.
+ */
 int CIniOptionsMgr::InitOption(const String& name, const String& defaultValue)
 {
 	varprop::VariantValue defValue;
@@ -205,6 +232,12 @@ int CIniOptionsMgr::InitOption(const String& name, const tchar_t* defaultValue)
 	return InitOption(name, String(defaultValue));
 }
 
+/**
+ * @brief Init and add new int option.
+ *
+ * Adds new option to list of options. Sets value to default value.
+ * If option does not exist in registry, saves with default value.
+ */
 int CIniOptionsMgr::InitOption(const String& name, int defaultValue, bool serializable)
 {
 	varprop::VariantValue defValue;
@@ -218,6 +251,12 @@ int CIniOptionsMgr::InitOption(const String& name, int defaultValue, bool serial
 	return retVal;
 }
 
+/**
+ * @brief Init and add new boolean option.
+ *
+ * Adds new option to list of options. Sets value to default value.
+ * If option does not exist in registry, saves with default value.
+ */
 int CIniOptionsMgr::InitOption(const String& name, bool defaultValue)
 {
 	varprop::VariantValue defValue;
@@ -225,6 +264,10 @@ int CIniOptionsMgr::InitOption(const String& name, bool defaultValue)
 	return InitOption(name, defValue);
 }
 
+/**
+ * @brief Save option to inifile
+ * @note Currently handles only integer and string options!
+ */
 int CIniOptionsMgr::SaveOption(const String& name)
 {
 	if (!m_serializing) return COption::OPT_OK;
@@ -248,7 +291,7 @@ int CIniOptionsMgr::SaveOption(const String& name)
 }
 
 /**
- * @brief Set new value for option and save option to file
+ * @brief Set new value for option and save option to inifile
  */
 int CIniOptionsMgr::SaveOption(const String& name, const varprop::VariantValue& value)
 {
@@ -259,7 +302,7 @@ int CIniOptionsMgr::SaveOption(const String& name, const varprop::VariantValue& 
 }
 
 /**
- * @brief Set new string value for option and save option to file
+ * @brief Set new string value for option and save option to inifile
  */
 int CIniOptionsMgr::SaveOption(const String& name, const String& value)
 {
@@ -272,13 +315,16 @@ int CIniOptionsMgr::SaveOption(const String& name, const String& value)
 }
 
 /**
- * @brief Set new string value for option and save option to file
+ * @brief Set new string value for option and save option to inifile
  */
 int CIniOptionsMgr::SaveOption(const String& name, const tchar_t* value)
 {
 	return SaveOption(name, String(value));
 }
 
+/**
+ * @brief Set new integer value for option and save option to inifile
+ */
 int CIniOptionsMgr::SaveOption(const String& name, int value)
 {
 	varprop::VariantValue val;
@@ -289,6 +335,9 @@ int CIniOptionsMgr::SaveOption(const String& name, int value)
 	return retVal;
 }
 
+/**
+ * @brief Set new boolean value for option and save option to inifile
+ */
 int CIniOptionsMgr::SaveOption(const String& name, bool value)
 {
 	varprop::VariantValue val;
