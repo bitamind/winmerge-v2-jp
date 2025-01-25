@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2024-11-11 01:52+0900\n"
+"PO-Revision-Date: 2025-01-25 00:09+0900\n"
 "Last-Translator: VenusGirl <https://github.com/VenusGirl>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -205,7 +205,7 @@ msgstr "수평으로 뒤집기(&O)"
 
 #, c-format
 msgid "&Zoom"
-msgstr "줌(&Z)"
+msgstr "확대/축소(&Z)"
 
 #, c-format
 msgid "25%"
@@ -222,7 +222,7 @@ msgstr "축소(&O)\tCtrl+-"
 #. Zoom to normal
 #, c-format
 msgid "&Normal\tCtrl+*"
-msgstr "보통(&N)\tCtrl+*"
+msgstr "정상(&N)\tCtrl+*"
 
 #, c-format
 msgid "&Overlay"
@@ -1333,7 +1333,7 @@ msgid "Ignore c&omment differences"
 msgstr "주석 차이 무시(&O)"
 
 msgid "Ignore &missing trailing EOL"
-msgstr ""
+msgstr "누락된 후행 EOL 무시(&M)"
 
 #, c-format
 msgid "&Include subfolders"
@@ -1978,8 +1978,11 @@ msgstr "추가 속성"
 msgid "Select Plugin"
 msgstr "플러그인 선택"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "플러그인 이름(&N):"
+
+msgid "&Target files:"
+msgstr "대상 파일(&T):"
 
 #, c-format
 msgid "Extensions list:"
@@ -1998,7 +2001,7 @@ msgstr "모든 플러그인을 표시하고, 확장을 확인하지 않음"
 msgid "&Open files in the same window type after unpacking"
 msgstr "압축을 푼 후 동일한 창 유형의 파일 열기(&O)"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "플러그인 파이프라인(&P):"
 
 msgid "&Alias..."
@@ -2529,6 +2532,9 @@ msgstr "플러그인"
 msgid "&Enable plugins"
 msgstr "플러그인 활성화(&E)"
 
+msgid "Plugin &type:"
+msgstr "플러그인(&T):"
+
 msgid "File filters:"
 msgstr "파일 필터:"
 
@@ -2676,9 +2682,6 @@ msgstr "16진수 보기(&H)"
 
 msgid "Edit Plugin"
 msgstr "편집 플러그인"
-
-msgid "Plugin &type:"
-msgstr "플러그인(&T):"
 
 msgid "&Category:"
 msgstr "범주(&C):"
@@ -3544,6 +3547,13 @@ msgstr "모두... (%1)"
 #, c-format
 msgid "Differences to... (%1)"
 msgstr "차이점... (%1)"
+
+msgid ""
+"Some selected items are identical or skipped.\n"
+"Do you want to copy only the items with differences?"
+msgstr ""
+"일부 선택된 항목은 동일하거나 건너뛸 수 있습니다.\n"
+"차이점이 있는 항목만 복사하시겠습니까?"
 
 #, c-format
 msgid "Left (%1)"
@@ -4972,6 +4982,27 @@ msgstr "플러그인 파이프라인 '%1'의 별칭"
 msgid "New plugin description"
 msgstr "새 플러그인 설명"
 
+msgid "All"
+msgstr "모두"
+
+msgid "1st"
+msgstr "첫 번째"
+
+msgid "2nd"
+msgstr "두 번째"
+
+msgid "3rd"
+msgstr "세 번째"
+
+msgid "1st and 2nd"
+msgstr "첫 번째 및 두 번쩨"
+
+msgid "1st and 3rd"
+msgstr "척 번째 및 세번째"
+
+msgid "2nd and 3rd"
+msgstr "두 번째 및 세번째"
+
 msgid "Filter applied"
 msgstr "필터 적용됨"
 
@@ -5407,7 +5438,7 @@ msgid ""
 "Markdown Previewer. \r\n"
 "Arguments: Command line options passed to the md2html command."
 msgstr ""
-"Markdown 미리보기입니다.\r\n"
+"마크다운 미리보기입니다.\r\n"
 "인수: md2html 명령에 전달된 명령줄 옵션입니다."
 
 msgid ""
@@ -5640,7 +5671,7 @@ msgid "Ignore Case"
 msgstr "대소문자 무시"
 
 msgid "Use RegExp"
-msgstr "표현식 사용"
+msgstr "정규식 사용"
 
 msgid "Find what"
 msgstr "찾을 내용"

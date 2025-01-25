@@ -1623,8 +1623,11 @@ msgstr "Разширени настройки"
 msgid "Select Plugin"
 msgstr "Избиране на добавка"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "Д&обавка:"
+
+msgid "&Target files:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Разширения:"
@@ -1641,7 +1644,7 @@ msgstr ""
 msgid "&Open files in the same window type after unpacking"
 msgstr ""
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "Кон&вейер:"
 
 msgid "&Alias..."
@@ -2063,6 +2066,9 @@ msgstr "Добавки"
 msgid "&Enable plugins"
 msgstr "Включване на &добавките"
 
+msgid "Plugin &type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "Филтри за файлове:"
 
@@ -2192,9 +2198,6 @@ msgid "&Hex View"
 msgstr "&Шестнадесетичен изглед"
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"
@@ -2974,6 +2977,9 @@ msgstr "Всички към… (%1)"
 #, c-format
 msgid "Differences to... (%1)"
 msgstr "Различия към… (%1)"
+
+msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
+msgstr ""
 
 #, c-format
 msgid "Left (%1)"
@@ -4244,6 +4250,27 @@ msgid "Alias for plugin pipeline '%1'"
 msgstr ""
 
 msgid "New plugin description"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "1st"
+msgstr ""
+
+msgid "2nd"
+msgstr ""
+
+msgid "3rd"
+msgstr ""
+
+msgid "1st and 2nd"
+msgstr ""
+
+msgid "1st and 3rd"
+msgstr ""
+
+msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"

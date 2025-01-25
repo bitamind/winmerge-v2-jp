@@ -1971,8 +1971,11 @@ msgstr "További tulajdonságok"
 msgid "Select Plugin"
 msgstr "Bővítmény kiválasztása"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "Bővítmény neve:"
+
+msgid "&Target files:"
+msgstr "&Célfájlok:"
 
 #, c-format
 msgid "Extensions list:"
@@ -1991,7 +1994,7 @@ msgstr "Az összes bővítmény megjelenítése, ne ellenőrizze a kiterjesztés
 msgid "&Open files in the same window type after unpacking"
 msgstr "Kicsomagolás után a fájlok megnyitása ugyanabban az ablakban"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "Bővítmény pipeline"
 
 msgid "&Alias..."
@@ -2522,6 +2525,9 @@ msgstr "Bővítmények"
 msgid "&Enable plugins"
 msgstr "Bővítmények bekapcsolása"
 
+msgid "Plugin &type:"
+msgstr "Bővítmény &típusa:"
+
 msgid "File filters:"
 msgstr "Fájlszűrők:"
 
@@ -2669,9 +2675,6 @@ msgstr "Hexadecimális nézet"
 
 msgid "Edit Plugin"
 msgstr "Bővítmény szerkesztése"
-
-msgid "Plugin &type:"
-msgstr "Bővítmény &típusa:"
 
 msgid "&Category:"
 msgstr "&Kategória:"
@@ -3523,6 +3526,9 @@ msgstr "Az összesből a...(%1)"
 #, c-format
 msgid "Differences to... (%1)"
 msgstr "Különbségek ehhez...(%1)"
+
+msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
+msgstr "Néhány kiválasztott elem azonos vagy kimaradt.\nCsak a különbségeket tartalmazó elemeket szeretné másolni?"
 
 #, c-format
 msgid "Left (%1)"
@@ -4922,6 +4928,27 @@ msgstr "'%1' bővítmény pipeline alias"
 
 msgid "New plugin description"
 msgstr "Új bővítmény leírás"
+
+msgid "All"
+msgstr "Összes"
+
+msgid "1st"
+msgstr "1."
+
+msgid "2nd"
+msgstr "2."
+
+msgid "3rd"
+msgstr "3."
+
+msgid "1st and 2nd"
+msgstr "1. és 2."
+
+msgid "1st and 3rd"
+msgstr "1. és 3."
+
+msgid "2nd and 3rd"
+msgstr "2. és 3."
 
 msgid "Filter applied"
 msgstr "Szűrő alkalmazva"

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2024-11-20 08:45+0900\n"
+"PO-Revision-Date: 2025-01-21 07:48+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -1629,8 +1629,11 @@ msgstr "追加プロパティ"
 msgid "Select Plugin"
 msgstr "プラグインの選択"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "プラグイン名(&N):"
+
+msgid "&Target files:"
+msgstr "対象ファイル(&T)"
 
 msgid "Extensions list:"
 msgstr "拡張子一覧:"
@@ -1647,7 +1650,7 @@ msgstr "拡張子を無視してすべてのプラグインを表示する"
 msgid "&Open files in the same window type after unpacking"
 msgstr "展開プラグイン適用後、ファイルを同じウインドウ タイプで開く(&O)"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "プラグイン パイプライン(&P):"
 
 msgid "&Alias..."
@@ -2069,6 +2072,9 @@ msgstr "プラグイン"
 msgid "&Enable plugins"
 msgstr "プラグインを有効にする(&E)"
 
+msgid "Plugin &type:"
+msgstr "プラグインの種類(&T):"
+
 msgid "File filters:"
 msgstr "ファイル フィルター:"
 
@@ -2199,9 +2205,6 @@ msgstr "HEX 表示(&H)"
 
 msgid "Edit Plugin"
 msgstr "プラグインの編集"
-
-msgid "Plugin &type:"
-msgstr "プラグインの種類(&T)"
 
 msgid "&Category:"
 msgstr "カテゴリー(&C)"
@@ -2975,6 +2978,13 @@ msgstr "すべてを... (%1)"
 #, c-format
 msgid "Differences to... (%1)"
 msgstr "差異を... (%1)"
+
+msgid ""
+"Some selected items are identical or skipped.\n"
+"Do you want to copy only the items with differences?"
+msgstr ""
+"選択した項目の一部が同一かスキップされた項目です。\n"
+"差異のある項目だけをコピーしますか？"
 
 #, c-format
 msgid "Left (%1)"
@@ -4252,6 +4262,27 @@ msgstr "プラグインパイプライン '%1' のエイリアス"
 
 msgid "New plugin description"
 msgstr "新しいプラグインの説明"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "1st"
+msgstr "1番目"
+
+msgid "2nd"
+msgstr "2番目"
+
+msgid "3rd"
+msgstr "3番目"
+
+msgid "1st and 2nd"
+msgstr "1番目と2番目"
+
+msgid "1st and 3rd"
+msgstr "1番目と3番目"
+
+msgid "2nd and 3rd"
+msgstr "2番目と3番目"
 
 msgid "Filter applied"
 msgstr "フィルター適用"

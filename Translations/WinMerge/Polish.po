@@ -1627,8 +1627,11 @@ msgstr "Dodatkowe właściwości"
 msgid "Select Plugin"
 msgstr "Wybierz wtyczkę"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "Nazwa wtyczki:"
+
+msgid "&Target files:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Lista rozszerzeń:"
@@ -1645,7 +1648,7 @@ msgstr "Wyświetl wszystkie wtyczki (nie sprawdzaj po rozszerzeniu)"
 msgid "&Open files in the same window type after unpacking"
 msgstr "Po rozpakowaniu otwórz pliki w tym samym typie okna"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "Wtyczka pipeline:"
 
 msgid "&Alias..."
@@ -2059,6 +2062,9 @@ msgstr "Wtyczki"
 msgid "&Enable plugins"
 msgstr "Włącz wtyczki"
 
+msgid "Plugin &type:"
+msgstr "Typ wtyczki:"
+
 msgid "File filters:"
 msgstr "Filtry pliku:"
 
@@ -2189,9 +2195,6 @@ msgstr "Widok szesnastkowy"
 
 msgid "Edit Plugin"
 msgstr ""
-
-msgid "Plugin &type:"
-msgstr "Typ wtyczki:"
 
 msgid "&Category:"
 msgstr "Kategoria:"
@@ -2766,6 +2769,9 @@ msgstr "Wszystkie do... (%1)"
 #, c-format
 msgid "Differences to... (%1)"
 msgstr "Różnice do... (%1)"
+
+msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
+msgstr ""
 
 #, c-format
 msgid "Left (%1)"
@@ -3868,6 +3874,27 @@ msgid "Alias for plugin pipeline '%1'"
 msgstr ""
 
 msgid "New plugin description"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "1st"
+msgstr ""
+
+msgid "2nd"
+msgstr ""
+
+msgid "3rd"
+msgstr ""
+
+msgid "1st and 2nd"
+msgstr ""
+
+msgid "1st and 3rd"
+msgstr ""
+
+msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"

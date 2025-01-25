@@ -1970,8 +1970,11 @@ msgstr "Propietats addicionals"
 msgid "Select Plugin"
 msgstr "Selecciona el connector"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "Nom del connector:"
+
+msgid "&Target files:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1990,7 +1993,7 @@ msgstr "&Visualitza tots els connectors, sense verificar l'extensió"
 msgid "&Open files in the same window type after unpacking"
 msgstr "Obre els fitxers al mateix tipus de finestra després de desempaquetar"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "Etapes del connector:"
 
 msgid "&Alias..."
@@ -2521,6 +2524,9 @@ msgstr "&Connectors"
 msgid "&Enable plugins"
 msgstr "&Habilita els Connectors"
 
+msgid "Plugin &type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "Filtres de fitxer:"
 
@@ -2667,9 +2673,6 @@ msgid "&Hex View"
 msgstr "Vista &Hexadecimal"
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"
@@ -3537,6 +3540,9 @@ msgstr "Tots a... (%1)"
 #, c-format
 msgid "Differences to... (%1)"
 msgstr "Diferències a... (%1)"
+
+msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
+msgstr ""
 
 #, c-format
 msgid "Left (%1)"
@@ -4964,6 +4970,27 @@ msgid "Alias for plugin pipeline '%1'"
 msgstr ""
 
 msgid "New plugin description"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "1st"
+msgstr ""
+
+msgid "2nd"
+msgstr ""
+
+msgid "3rd"
+msgstr ""
+
+msgid "1st and 2nd"
+msgstr ""
+
+msgid "1st and 3rd"
+msgstr ""
+
+msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"

@@ -1629,8 +1629,11 @@ msgstr "Extra eigenschappen"
 msgid "Select Plugin"
 msgstr "Plugin selecteren"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "Naam plugin:"
+
+msgid "&Target files:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Lijst extensies:"
@@ -1647,7 +1650,7 @@ msgstr "Alle plugins weergeven zonder de extensie te controleren"
 msgid "&Open files in the same window type after unpacking"
 msgstr "Bestanden openen in hetzelfde venstertype na uitpakken"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "Plugin pipeline:"
 
 msgid "&Alias..."
@@ -2076,6 +2079,9 @@ msgstr "Plugins"
 msgid "&Enable plugins"
 msgstr "Plugins inschakelen"
 
+msgid "Plugin &type:"
+msgstr "Type plugin:"
+
 msgid "File filters:"
 msgstr "Bestandsfilters:"
 
@@ -2206,9 +2212,6 @@ msgstr "Hex-weergave"
 
 msgid "Edit Plugin"
 msgstr "Plugin bewerken"
-
-msgid "Plugin &type:"
-msgstr "Type plugin:"
 
 msgid "&Category:"
 msgstr "Categorie:"
@@ -3007,6 +3010,9 @@ msgstr "Alles naar... (%1)"
 #, c-format
 msgid "Differences to... (%1)"
 msgstr "Verschillen naar... (%1)"
+
+msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
+msgstr ""
 
 #, c-format
 msgid "Left (%1)"
@@ -4314,6 +4320,27 @@ msgstr "Alias voor plugin-pijplijn '%1'"
 
 msgid "New plugin description"
 msgstr "Beschrijving nieuwe plugin"
+
+msgid "All"
+msgstr ""
+
+msgid "1st"
+msgstr ""
+
+msgid "2nd"
+msgstr ""
+
+msgid "3rd"
+msgstr ""
+
+msgid "1st and 2nd"
+msgstr ""
+
+msgid "1st and 3rd"
+msgstr ""
+
+msgid "2nd and 3rd"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Filter toegepast"

@@ -256,6 +256,8 @@ void Init(COptionsMgr *pOptions)
 	if (pOptions->GetString(OPT_DOWNLOAD_URL) == DownloadUrlOld)
 		pOptions->SaveOption(OPT_DOWNLOAD_URL, DownloadUrl);
 
+	pOptions->InitOption(OPT_MOUSE_HOOK_ENABLED, true);
+
 	Options::CustomColors::Init(pOptions);
 	Options::DiffOptions::Init(pOptions);
 	Options::DiffColors::Init(pOptions);

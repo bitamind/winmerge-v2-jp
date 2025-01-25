@@ -510,44 +510,6 @@ void CMainFrame::OnDestroy(void)
 		RevokeDragDrop(m_hWnd);
 }
 
-static HMENU GetSubmenu(HMENU menu, int nthSubmenu)
-{
-	for (int nth = 0, i = 0; i < ::GetMenuItemCount(menu); i++)
-	{
-		if (::GetSubMenu(menu, i) != nullptr)
-		{
-			if (nth == nthSubmenu)
-				return ::GetSubMenu(menu, i);
-			nth++;
-		}
-	}
-	// error, submenu not found
-	return nullptr;
-}
-
-static HMENU GetSubmenu(HMENU mainMenu, UINT nIDFirstMenuItem, int nthSubmenu)
-{
-	int i;
-	for (i = 0 ; i < ::GetMenuItemCount(mainMenu) ; i++)
-		if (::GetMenuItemID(::GetSubMenu(mainMenu, i), 0) == nIDFirstMenuItem)
-			break;
-	HMENU menu = ::GetSubMenu(mainMenu, i);
-	if (!menu)
-		return nullptr;
-	return GetSubmenu(menu, nthSubmenu);
-}
-
-/**
- * @brief Find the scripts submenu from the main menu
- * As now this is the first submenu in "Plugins" menu
- * We find the "Plugins" menu by looking for a menu 
- *  starting with ID_UNPACK_MANUAL.
- */
-HMENU CMainFrame::GetPrediffersSubmenu(HMENU mainMenu)
-{
-	return GetSubmenu(mainMenu, ID_PLUGINS_LIST, 1);
-}
-
 /**
  * @brief Create a new menu for the view..
  * @param [in] view Menu view either MENU_DEFAULT, MENU_MERGEVIEW or MENU_DIRVIEW.
@@ -729,7 +691,7 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 			unsigned topMenuId = pPopupMenu->GetMenuItemID(0);
 			if (topMenuId == ID_NO_PREDIFFER)
 			{
-				UpdatePrediffersMenu();
+				UpdatePrediffersMenu(pPopupMenu);
 			}
 			else if (topMenuId == ID_MERGE_COMPARE_TEXT)
 			{
@@ -823,7 +785,7 @@ bool CMainFrame::ShowAutoMergeDoc(UINT nID, IDirDoc * pDirDoc,
 		int preferredWindowType = -1;
 		PackingInfo infoUnpacker2;
 		unpackedFileExtension = (infoUnpacker ? infoUnpacker : &infoUnpacker2)
-			->GetUnpackedFileExtension(filteredFilenames, preferredWindowType);
+			->GetUnpackedFileExtension(-1, filteredFilenames, preferredWindowType);
 		if (static_cast<int>(nID) <= 0 && preferredWindowType >= 0)
 			nID = ID_MERGE_COMPARE_TEXT + preferredWindowType;
 	}
@@ -2014,16 +1976,12 @@ CMergeEditView * CMainFrame::GetActiveMergeEditView()
 	return pFrame->GetMergeDoc()->GetActiveMergeView();
 }
 
-void CMainFrame::UpdatePrediffersMenu()
+void CMainFrame::UpdatePrediffersMenu(CMenu* pPredifferMenu)
 {
-	CMenu* menu = GetMenu();
-	if (menu == nullptr)
-	{
+	if (pPredifferMenu == nullptr)
 		return;
-	}
 
-	HMENU hMainMenu = menu->m_hMenu;
-	HMENU prediffersSubmenu = GetPrediffersSubmenu(hMainMenu);
+	HMENU prediffersSubmenu = pPredifferMenu->m_hMenu;
 	if (prediffersSubmenu != nullptr)
 	{
 		CMergeEditView * pEditView = GetActiveMergeEditView();
@@ -2586,7 +2544,7 @@ void CMainFrame::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncs
 	{
 		if (IsZoomed())
 		{
-			lpncsp->rgrc[0].top = rcWindow.top + GetSystemMetrics(SM_CYFRAME) + GetSystemMetrics(SM_CXPADDEDBORDER);
+			lpncsp->rgrc[0].top = rcWindow.top + 0;
 			//lpncsp->rgrc[0].left += 1;
 			//lpncsp->rgrc[0].right -= 1;
 			lpncsp->rgrc[0].bottom -= 1;
@@ -3094,7 +3052,7 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 		CWaitCursor wait;
 		copiedFile = file;
 		PackingInfo infoUnpacker2 = infoUnpacker ? *infoUnpacker : PackingInfo{};
-		if (!infoUnpacker2.Unpacking(nullptr, copiedFile, copiedFile, { copiedFile }))
+		if (!infoUnpacker2.Unpacking(0, nullptr, copiedFile, copiedFile, { copiedFile }))
 		{
 			String sError = strutils::format_string1(_("File not unpacked: %1"), file);
 			AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);

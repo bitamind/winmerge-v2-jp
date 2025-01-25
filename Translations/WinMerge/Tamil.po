@@ -1624,8 +1624,11 @@ msgstr "கூடுதல் பண்புகள்"
 msgid "Select Plugin"
 msgstr "செருகுநிரலை தேர்ந்தெடு"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "சொருகி &பெயர்:"
+
+msgid "&Target files:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "நீட்டிப்பு பட்டியல்:"
@@ -1642,8 +1645,8 @@ msgstr "எல்லா செருகுநிரல்களையும் �
 msgid "&Open files in the same window type after unpacking"
 msgstr "&திறந்த பிறகு அதே சாளர வகை கோப்புகளை திறக்கவும்"
 
-msgid "&Plugin Pipeline:"
-msgstr "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
+msgstr "&Plugin pipeline:"
 
 msgid "&Alias..."
 msgstr ""
@@ -2064,6 +2067,9 @@ msgstr "செருகுகள்"
 msgid "&Enable plugins"
 msgstr "&செருகுநிரல்களை இயக்கு"
 
+msgid "Plugin &type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "கோப்பு வடிப்பான்கள்:"
 
@@ -2193,9 +2199,6 @@ msgid "&Hex View"
 msgstr "&ஹெக்ஸ் வியூ"
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"
@@ -2975,6 +2978,9 @@ msgstr "அனைத்திற்கும்... (%1)"
 #, c-format
 msgid "Differences to... (%1)"
 msgstr "வேறுபாடுகள்... (%1)"
+
+msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
+msgstr ""
 
 #, c-format
 msgid "Left (%1)"
@@ -4247,6 +4253,27 @@ msgid "Alias for plugin pipeline '%1'"
 msgstr ""
 
 msgid "New plugin description"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "1st"
+msgstr ""
+
+msgid "2nd"
+msgstr ""
+
+msgid "3rd"
+msgstr ""
+
+msgid "1st and 2nd"
+msgstr ""
+
+msgid "1st and 3rd"
+msgstr ""
+
+msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"

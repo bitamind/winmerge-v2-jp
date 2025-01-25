@@ -1631,8 +1631,11 @@ msgstr "Proprietăți suplimentare"
 msgid "Select Plugin"
 msgstr "Selectează plugin"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "&Nume plugin:"
+
+msgid "&Target files:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Listă extensii:"
@@ -1649,7 +1652,7 @@ msgstr "Afișează toate plugin-urile, nu verifica extensia"
 msgid "&Open files in the same window type after unpacking"
 msgstr "Deschide fișierele în același tip de fereastră după dezarhivare"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "Lanțul de &plugin-uri:"
 
 msgid "&Alias..."
@@ -2078,6 +2081,9 @@ msgstr "Plugin-uri"
 msgid "&Enable plugins"
 msgstr "Activ&ează plugin-uri"
 
+msgid "Plugin &type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "Filtre fișiere:"
 
@@ -2207,9 +2213,6 @@ msgid "&Hex View"
 msgstr "Afișare &hexadecimală"
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"
@@ -3019,6 +3022,9 @@ msgstr "Toate în... (%1)"
 #, c-format
 msgid "Differences to... (%1)"
 msgstr "Diferențele în... (%1)"
+
+msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
+msgstr ""
 
 #, c-format
 msgid "Left (%1)"
@@ -4338,6 +4344,27 @@ msgid "Alias for plugin pipeline '%1'"
 msgstr ""
 
 msgid "New plugin description"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "1st"
+msgstr ""
+
+msgid "2nd"
+msgstr ""
+
+msgid "3rd"
+msgstr ""
+
+msgid "1st and 2nd"
+msgstr ""
+
+msgid "1st and 3rd"
+msgstr ""
+
+msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"

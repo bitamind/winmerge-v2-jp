@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2024-12-24 20:50-0300\n"
+"PO-Revision-Date: 2025-01-22 23:10-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -1626,8 +1626,11 @@ msgstr "Propriedades Adicionais"
 msgid "Select Plugin"
 msgstr "Selecionar Plugin"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "Nome do &Plugin:"
+
+msgid "&Target files:"
+msgstr "Arquivos des&tino:"
 
 msgid "Extensions list:"
 msgstr "Lista das extensões:"
@@ -1644,7 +1647,7 @@ msgstr "Exibir todos os plugins, não verificar a extensão"
 msgid "&Open files in the same window type after unpacking"
 msgstr "&Abrir arquivos no mesmo tipo de janela após desempacotar"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "&Tubulação dos Plugins:"
 
 msgid "&Alias..."
@@ -2058,6 +2061,9 @@ msgstr "Plugins"
 msgid "&Enable plugins"
 msgstr "&Ativar plugins"
 
+msgid "Plugin &type:"
+msgstr "&Tipo de Plugin:"
+
 msgid "File filters:"
 msgstr "Filtros dos arquivo:"
 
@@ -2188,9 +2194,6 @@ msgstr "&Visualização Hex"
 
 msgid "Edit Plugin"
 msgstr "Editar Plugin"
-
-msgid "Plugin &type:"
-msgstr "&Tipo de Plugin:"
 
 msgid "&Category:"
 msgstr "&Categoria:"
@@ -2765,6 +2768,9 @@ msgstr "De Todos pra... (%1)"
 #, c-format
 msgid "Differences to... (%1)"
 msgstr "Das Diferenças pra... (%1)"
+
+msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
+msgstr "Alguns itens selecionados são idênticos ou foram ignorados.\nDeseja copiar apenas os itenc com diferenças?"
 
 #, c-format
 msgid "Left (%1)"
@@ -3868,6 +3874,27 @@ msgstr "Apelido para o encadeamento de plugin '%1'"
 
 msgid "New plugin description"
 msgstr "Descrição de novo plugin"
+
+msgid "All"
+msgstr "Todos"
+
+msgid "1st"
+msgstr "1º"
+
+msgid "2nd"
+msgstr "2º"
+
+msgid "3rd"
+msgstr "3º"
+
+msgid "1st and 2nd"
+msgstr "1º e 2º"
+
+msgid "1st and 3rd"
+msgstr "1º e 3º"
+
+msgid "2nd and 3rd"
+msgstr "2º e 3º"
 
 msgid "Filter applied"
 msgstr "Filtro aplicado"

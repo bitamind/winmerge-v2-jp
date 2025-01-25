@@ -1973,8 +1973,11 @@ msgstr "Zusätzliche Eigenschaften"
 msgid "Select Plugin"
 msgstr "Plugin auswählen"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "Plugin-Name:"
+
+msgid "&Target files:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1993,7 +1996,7 @@ msgstr "Alle Plugins anzeigen, die Erweiterung nicht überprüfen"
 msgid "&Open files in the same window type after unpacking"
 msgstr "Dateien nach dem Entpacken im gleichen Fenstertyp öffnen"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "&Plugin-Pipeline:"
 
 msgid "&Alias..."
@@ -2516,6 +2519,9 @@ msgstr "Plugins"
 msgid "&Enable plugins"
 msgstr "&Plugins aktivieren"
 
+msgid "Plugin &type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "Dateifilter:"
 
@@ -2662,9 +2668,6 @@ msgid "&Hex View"
 msgstr "&Hex-Ansicht"
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"
@@ -3328,6 +3331,9 @@ msgstr "Alle nach... (%1)"
 #, c-format
 msgid "Differences to... (%1)"
 msgstr "Unterschiede nach... (%1)"
+
+msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
+msgstr ""
 
 #, c-format
 msgid "Left (%1)"
@@ -4586,6 +4592,27 @@ msgstr "Alias für Plug-in Pipeline '%1'"
 
 msgid "New plugin description"
 msgstr "Neue Plug-in Beschreibung"
+
+msgid "All"
+msgstr ""
+
+msgid "1st"
+msgstr ""
+
+msgid "2nd"
+msgstr ""
+
+msgid "3rd"
+msgstr ""
+
+msgid "1st and 2nd"
+msgstr ""
+
+msgid "1st and 3rd"
+msgstr ""
+
+msgid "2nd and 3rd"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Angewandter Filter"
