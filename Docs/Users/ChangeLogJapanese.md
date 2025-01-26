@@ -2,9 +2,31 @@
 title: 変更履歴
 ---
 
+### 2025/01/29 2.16.46-jp-1
+
+#### 全般
+
+- 不具合修正: Al+F4キーで WinMerge が終了せずにツールメニューが表示される問題を修正した。（[#2592](https://github.com/WinMerge/winmerge/issues/2592)）。  
+- 不具合修正: Windowsのアニメーション効果が有効な状態でWinMergeを最大化して起動すると、一瞬タイトルバーの描画位置がずれる問題を修正した。
+
+#### フォルダー比較
+
+- 不具合修正: 左右のファイル名の大文字小文字も異なる場合、片方のファイルを削除後残ったファイルを反対側にコピーするとファイル名の大文字小文字が一致しない問題を修正した。（[#2599](https://github.com/WinMerge/winmerge/issues/2599)）。  
+- フォルダー比較ウインドウで左側から右側または逆方向にコピーする際、選択された項目に同一ファイルやスキップされたファイルが含まれていた場合に差異のあるファイルのみをコピーするか確認するダイアログを表示するようにした。（[PR #2622](https://github.com/WinMerge/winmerge/pull/2622)）。
+
+#### プラグイン
+
+- 不具合修正: バージョン2.16.43以降、プラグイン -> 比較前処理プラグイン メニューが正しく表示されない問題を修正した。  
+- ファイル番号を指定してプラグインを適用できる機能を追加した。（[PR #2598](https://github.com/WinMerge/winmerge/pull/2598)）。  
+- プラグインウィンドウをリサイズ可能にした。プラグインの種類ごとに表示するようにした。（[PR #2621](https://github.com/WinMerge/winmerge/pull/2621)）。
+
+#### マニュアル
+
+- 不具合修正: WinMergeマニュアル内の誤字を修正した（[#2597](https://github.com/WinMerge/winmerge/issues/2597)）
+
 ### 2024/12/29 2.16.44-jp-4
 
-#### 一般
+#### 全般
 
 - 不具合修正: メニューが非表示の場合、Shift+Altキーで言語を切り替えると、メニューにフォーカスが当たってしまう問題を修正した。
   ([PR #2572](https://github.com/WinMerge/winmerge/pull/2572))(PRをいただきました。ありがとうございます。)
@@ -32,7 +54,7 @@ title: 変更履歴
 
 ### 2024/11/29 2.16.44-jp-3
 
-#### 一般
+#### 全般
 
 - 不具合修正: WinMergeをセカンドモニターで最大化表示するとタイトルバーの高さが大きくなりすぎる問題を修正した。([#2510](https://github.com/WinMerge/winmerge/issues/2510), [#2512](https://github.com/WinMerge/winmerge/issues/2512), [#2540](https://github.com/WinMerge/winmerge/issues/2540), [#2549](https://github.com/WinMerge/winmerge/issues/2549))
 - 不具合修正: WinMergeの最大化表示時に右上端にマウスカーソルを移動したとき、閉じるボタンが押せない問題を修正した。([#2520](https://github.com/WinMerge/winmerge/issues/2520))
