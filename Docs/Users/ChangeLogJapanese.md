@@ -17,6 +17,7 @@ title: 変更履歴
 #### プラグイン
 
 - 不具合修正: バージョン2.16.43以降、プラグイン -> 比較前処理プラグイン メニューが正しく表示されない問題を修正した。  
+- 不具合修正: PowerPoint ファイルを CompareMSPowerPointFiles.sct プラグインで比較するとエラー 0x80048010 が発生することがある問題を修正した。
 - ファイル番号を指定してプラグインを適用できる機能を追加した。（[PR #2598](https://github.com/WinMerge/winmerge/pull/2598)）。  
 - プラグインウィンドウをリサイズ可能にした。プラグインの種類ごとに表示するようにした。（[PR #2621](https://github.com/WinMerge/winmerge/pull/2621)）。
 
